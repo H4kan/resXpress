@@ -1,4 +1,6 @@
 ﻿using ResXpress.Providers;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows;
@@ -14,9 +16,12 @@ namespace ResXpress
     {
         private FileSystemService _fileSystemService;
         private SolutionPathProvider _solutionPathProvider;
+        private MessageProvider _messageProvider;
 
         private bool readyToRun = false;
         private string solPath = string.Empty;
+
+        private IEnumerable<string> languages;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserWindowControl"/> class.
@@ -27,9 +32,12 @@ namespace ResXpress
  
         }
 
-        public void InitializeServices(SolutionPathProvider solutionPathProvider)
+        public void InitializeServices(
+            SolutionPathProvider solutionPathProvider,
+            MessageProvider messageProvider)
         {
             _solutionPathProvider = solutionPathProvider;
+            _messageProvider = messageProvider;
             _fileSystemService = new FileSystemService();
             this.InitializeStuff();
         }
@@ -46,7 +54,7 @@ namespace ResXpress
             }
             else
             {
-                var fileNames = this._fileSystemService.GetFileNames(solPath);
+                var fileNames = this._fileSystemService.GetFileNames(solPath, out languages);
                 this.readyToRun = fileNames.Count() > 0;
                 if (!this.readyToRun)
                 {
@@ -67,7 +75,14 @@ namespace ResXpress
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.runBtn.IsEnabled = false;
-            this._fileSystemService.ProcessFileChange(this.inputBox.Text, solPath, this.fileComboBox.Text);
+            var message = this._fileSystemService.ProcessFileChange(
+                this.inputBox.Text, solPath, this.fileComboBox.Text, this.languages);
+            this._messageProvider.ShowInfoMessage(message);
+            if (message.Status == InfoStatus.Success)
+            {
+                Window.GetWindow(this).Close();
+            }
+            
         }
 
         private void fileComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

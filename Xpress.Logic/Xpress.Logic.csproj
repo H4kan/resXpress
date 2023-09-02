@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Decoders\InputDecoder.cs" />
+    <Compile Include="Decoders\UserRequest.cs" />
+    <Compile Include="FileSystem\FileOrganizer.cs" />
     <Compile Include="FileSystem\FileSystemService.cs" />
+    <Compile Include="FileSystem\InfoMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

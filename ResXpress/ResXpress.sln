@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResXpress", "ResXpress.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xpress.Logic", "..\Xpress.Logic\Xpress.Logic.csproj", "{1CE9AD7A-5AA4-46B1-9903-8C6A5C0F9524}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xpress.Logic.Test", "..\Xpress.Logic.Test\Xpress.Logic.Test.csproj", "{C1E0B090-6694-4B1D-85ED-FE820823C048}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{1CE9AD7A-5AA4-46B1-9903-8C6A5C0F9524}.Release|arm64.Build.0 = Release|Any CPU
 		{1CE9AD7A-5AA4-46B1-9903-8C6A5C0F9524}.Release|x86.ActiveCfg = Release|Any CPU
 		{1CE9AD7A-5AA4-46B1-9903-8C6A5C0F9524}.Release|x86.Build.0 = Release|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Debug|arm64.Build.0 = Debug|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Release|arm64.ActiveCfg = Release|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Release|arm64.Build.0 = Release|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1E0B090-6694-4B1D-85ED-FE820823C048}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

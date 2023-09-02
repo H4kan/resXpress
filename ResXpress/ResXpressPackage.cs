@@ -1,5 +1,6 @@
 ﻿using EnvDTE;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using ResXpress.Providers;
 using System;
 using System.Runtime.InteropServices;
@@ -32,6 +33,7 @@ namespace ResXpress
     public sealed class ResXpressPackage : AsyncPackage
     {
         public SolutionPathProvider SolutionPathProvider { get; private set; }
+        public MessageProvider MessageProvider { get; private set; }
 
         /// <summary>
         /// ResXpressPackage GUID string.
@@ -56,7 +58,13 @@ namespace ResXpress
 
             DTE dte = (DTE)(await GetServiceAsync(typeof(DTE)));
 
-            SolutionPathProvider = new SolutionPathProvider(dte);
+     
+            var bar = await GetServiceAsync(typeof(SVsStatusbar)) as IVsStatusbar;
+
+
+
+        SolutionPathProvider = new SolutionPathProvider(dte);
+            MessageProvider = new MessageProvider(bar);
 
         }
 

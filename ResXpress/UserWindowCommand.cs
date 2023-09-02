@@ -93,7 +93,11 @@ namespace ResXpress
             // is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.
             ToolWindowPane window = this.package.FindToolWindow(typeof(UserWindow), 0, true);
-            (window.Content as UserWindowControl).InitializeServices((this.package as ResXpressPackage).SolutionPathProvider);
+            (window.Content as UserWindowControl)
+                .InitializeServices(
+                    (this.package as ResXpressPackage).SolutionPathProvider,
+                    (this.package as ResXpressPackage).MessageProvider
+                );
 
             if ((null == window) || (null == window.Frame))
             {

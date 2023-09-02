@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\MessageProvider.cs" />
     <Compile Include="Providers\SolutionPathProvider.cs" />
     <Compile Include="ResXpressPackage.cs" />
     <Compile Include="UserWindow.cs" />
