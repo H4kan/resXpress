@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ResXpress.f11f15a1-e282-4765-a212-3ef48d2d1e90" Version="0.1.1" Language="en-US" Publisher="Szymon Sieradzki" />
+        <Identity Id="ResXpress.f11f15a1-e282-4765-a212-3ef48d2d1e90" Version="0.1.1" Language="en-US" Publisher="H4kan" />
         <DisplayName>ResXpress</DisplayName>
         <Description xml:space="preserve">Speed up inserting data into .resx files by using ResXpress.</Description>
-        <ReleaseNotes>Early access</ReleaseNotes>
+        <GettingStartedGuide>gettingstarted.txt</GettingStartedGuide>
+        <PreviewImage>Resources\chika fujiwara icon.jpg</PreviewImage>
+        <Tags>resx</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">

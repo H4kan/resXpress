@@ -84,6 +84,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\chika fujiwara icon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="gettingstarted.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\UserWindowCommand.png" />
     <VSCTCompile Include="ResXpressPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>

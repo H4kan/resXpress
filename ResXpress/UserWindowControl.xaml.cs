@@ -1,4 +1,5 @@
-﻿using ResXpress.Providers;
+﻿using Microsoft.VisualStudio.Shell;
+using ResXpress.Providers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -39,6 +40,7 @@ namespace ResXpress
             _solutionPathProvider = solutionPathProvider;
             _messageProvider = messageProvider;
             _fileSystemService = new FileSystemService();
+            ThreadHelper.ThrowIfNotOnUIThread();
             this.InitializeStuff();
         }
 
@@ -46,6 +48,7 @@ namespace ResXpress
         {
             this.runBtn.IsEnabled = false;
             this.fileComboBox.Items.Clear();
+            ThreadHelper.ThrowIfNotOnUIThread();
             solPath = _solutionPathProvider.GetSolutionPath();
             if (solPath == null)
             {
@@ -77,6 +80,7 @@ namespace ResXpress
             this.runBtn.IsEnabled = false;
             var message = this._fileSystemService.ProcessFileChange(
                 this.inputBox.Text, solPath, this.fileComboBox.Text, this.languages);
+            ThreadHelper.ThrowIfNotOnUIThread();
             this._messageProvider.ShowInfoMessage(message);
             if (message.Status == InfoStatus.Success)
             {
