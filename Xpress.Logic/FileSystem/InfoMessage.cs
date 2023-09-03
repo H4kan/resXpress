@@ -9,6 +9,7 @@ namespace Xpress.Logic.FileSystem
     public class InfoMessage
     {
         public string Text { get; set; }
+        public int ErrorCount { get; set; } 
 
         public InfoStatus Status { get; set; }
     }

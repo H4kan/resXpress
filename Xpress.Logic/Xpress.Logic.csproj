@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Decoders\InputDecoder.cs" />
     <Compile Include="Decoders\UserRequest.cs" />
+    <Compile Include="FileExplorer\FileExplorer.cs" />
     <Compile Include="Orchestration\EventOrganizer.cs" />
     <Compile Include="FileSystem\FileSystemService.cs" />
     <Compile Include="FileSystem\InfoMessage.cs" />
