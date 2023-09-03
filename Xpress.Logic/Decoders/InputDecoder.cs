@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xpress.Logic.Abbrevations;
 
 namespace Xpress.Logic.Decoders
 {
@@ -64,7 +65,7 @@ namespace Xpress.Logic.Decoders
                     continue;
                 }
 
-                var lineLang = this.allLanguages.FirstOrDefault(lang => line.ToUpper().StartsWith(lang.Name));
+                var lineLang = this.allLanguages.FirstOrDefault(lang => AbbrevDefinition.NonAbbrevated(String.Concat(line.Take(2)).ToUpper()) == lang.Name);
                 if (lineLang != null)
                 {
                     if (unusedLanguages.Any(l => l.Name == lineLang.Name))
