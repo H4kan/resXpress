@@ -10,6 +10,8 @@ namespace Xpress.Logic.Decoders
     {
         private IEnumerable<Language> allLanguages;
 
+        private const string KEY = "KEY";
+
         public InputDecoder(IEnumerable<string> languages) {
 
             allLanguages = languages.Select(l => new Language()
@@ -50,7 +52,19 @@ namespace Xpress.Logic.Decoders
                     unusedLanguages.AddRange(this.allLanguages);
                     continue;
                 }
-                var lineLang = this.allLanguages.FirstOrDefault(lang => line.StartsWith(lang.Name));
+                if (line.ToUpper().StartsWith(KEY))
+                {
+                    request.Records.Add(new Record()
+                    {
+                        Key = GetLineValue(line),
+                        Values = new List<LocalizedRecord> { },
+                    });
+                    unusedLanguages.Clear();
+                    unusedLanguages.AddRange(this.allLanguages);
+                    continue;
+                }
+
+                var lineLang = this.allLanguages.FirstOrDefault(lang => line.ToUpper().StartsWith(lang.Name));
                 if (lineLang != null)
                 {
                     if (unusedLanguages.Any(l => l.Name == lineLang.Name))
@@ -58,7 +72,7 @@ namespace Xpress.Logic.Decoders
                         request.Records.Last().Values.Add(new LocalizedRecord()
                         {
                             Language = lineLang,
-                            Value = String.Concat(line.SkipWhile(c => c != ':').SkipWhile(c => !Char.IsLetterOrDigit(c))),
+                            Value = GetLineValue(line),
                         });
                         unusedLanguages.RemoveAll(l => l.Name == lineLang.Name);
                     }
@@ -71,7 +85,7 @@ namespace Xpress.Logic.Decoders
                                 new LocalizedRecord()
                                 {
                                     Language = lineLang,
-                                    Value = String.Concat(line.SkipWhile(c => c != ':').SkipWhile(c => !Char.IsLetterOrDigit(c))),
+                                    Value = GetLineValue(line),
                                 }
                             },
                         });
@@ -84,11 +98,14 @@ namespace Xpress.Logic.Decoders
             }
 
             request.Records = request.Records.Where(r => r.Values.Count > 0).ToList();
-            
+            request.Languages = request.Languages.Where(lng => request.Records.Any(r => r.Values.Any(v => v.Language.Name == lng.Name)));
 
             return request;
         }
 
-
+        private string GetLineValue(string line)
+        {
+            return String.Concat(line.SkipWhile(c => c != ':').SkipWhile(c => !Char.IsLetterOrDigit(c)));
+        }
     }
 }

@@ -49,7 +49,18 @@ namespace Xpress.Logic.Test
             "\n" +
             "EN: some ttest" +
             "\n" +
-            "\n"
+            "\n",
+            #endregion
+            #region case4
+            "key: helloKey\n" + 
+            "EN: hello. welome!\n" +
+            "NO: Welcome:\n" +
+            "\n" +
+            "EN: some test\n" +
+            "NO: some other test\n" +
+            "\n" +
+            "key: someTestKey\n" +
+            "EN: some ttest",
             #endregion
         };
 
@@ -118,6 +129,62 @@ namespace Xpress.Logic.Test
                            }
                         }
                     }
+                },
+                #endregion
+                #region case4
+                new UserRequest()
+                {
+                    Languages =  new List<Language>()
+                        { new Language(){Name = "EN" }, new Language(){Name = "NO" } },
+                    Records = new List<Record>()
+                    {
+                        new Record()
+                        {
+                           Key = "helloKey",
+                           Values = new List<LocalizedRecord>()
+                           {
+                               new LocalizedRecord()
+                               {
+                                   Language = languages[0],
+                                   Value = "hello. welome!"
+                               },
+                               new LocalizedRecord()
+                               {
+                                   Language = languages[1],
+                                   Value = "Welcome:"
+                               },
+                           }
+                        },
+                        new Record()
+                        {
+                           Key = null,
+                           Values = new List<LocalizedRecord>()
+                           {
+                               new LocalizedRecord()
+                               {
+                                   Language = languages[0],
+                                   Value = "some test"
+                               },
+                               new LocalizedRecord()
+                               {
+                                   Language = languages[1],
+                                   Value = "some other test"
+                               },
+                           }
+                        },
+                         new Record()
+                        {
+                           Key = "someTestKey",
+                           Values = new List<LocalizedRecord>()
+                           {
+                               new LocalizedRecord()
+                               {
+                                   Language = languages[0],
+                                   Value = "some ttest"
+                               },
+                           }
+                        }
+                    }
                 }
                 #endregion
             };
@@ -141,6 +208,12 @@ namespace Xpress.Logic.Test
         public void Case3_ShouldDecodeProperly_WithManySpaces()
         {
             expected[0].Should().BeEquivalentTo(_inputDecoder.Decode(cases[2]));
+        }
+
+        [TestMethod]
+        public void Case4_ShouldDecodeProperly_WithKeys()
+        {
+            expected[1].Should().BeEquivalentTo(_inputDecoder.Decode(cases[3]));
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xpress.Logic.Decoders;
+using Xpress.Logic.Orchestration;
 
 namespace Xpress.Logic.FileSystem
 {
@@ -34,6 +35,9 @@ namespace Xpress.Logic.FileSystem
                     Text = "Critical error occured while importing records", 
                     Status = InfoStatus.Failure };
             }
+            var eventOrganizer = new EventOrganizer(solPath, fileGroup);
+            eventOrganizer.OrchestrateEvents(request);
+
 
 
             return new InfoMessage() { 
