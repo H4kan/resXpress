@@ -1,1 +1,72 @@
-opihjiouhiouhoiuh
+﻿### ResXpress
+
+This file contains multiple examples of resXpress usage.
+
+###################################################################################
+Case 1: I already have a record in English .resx file and now I want to add 
+corresponding records to Norwegian and Swedish .resx files.
+
+Syntax:
+EN: Some record I already had
+NO: En rekord jeg allerede hadde
+SE: Något rekord hade jag redan
+
+Note: ResXpress will find first record with "Some record I already had" in 
+English .resx and use its key to create corresponding records in other files.
+
+###################################################################################
+Case 2: I want to create completely new record in English and Finnish .resx files.
+
+Syntax:
+key: keyForMyNewRecord
+EN: Wow! I created new record.
+FI: Vau! Tein uuden ennätyksen.
+
+Note: Here, providing key is necessary since there are no corresponding records
+from which resXpress could resolve key value.
+
+###################################################################################
+Case 3: I already have English record and want to update Norwegian one.
+
+Syntax:
+key: someRecordToUpdate
+NO: Oppdatert rekordverdi
+
+or
+
+Syntax:
+EN: English value of record I want to update
+NO: Oppdatert rekordverdi
+
+Note: During update, resXpress can resolve corresponding record key using both key
+and other language's corresponding values.
+
+###################################################################################
+Case 4: I want to do multiple updates and/or additions to my .resx files
+
+Syntax:
+EN: First record I want to update
+NO: Første post jeg vil oppdatere
+
+key: someRecordIWantToAdd
+EN: Freshly created record
+
+EN: Second record I want to update
+NO: Andre rekord jeg ønsker å oppdatere
+
+Note: You can instruct resXpress to modify multiple records at once. In case of
+conflicts (modyfing same record twice), last instruction takes precedence.
+
+Another note: Typically, you want to use new lines to separate different
+instructions for resXpress. However, it's usually not necessary to do so.
+ResXpress will detect new instruction start if it will start with directive
+in language that previous record already included.
+
+For example:
+EN: First record I want to update
+NO: Første post jeg vil oppdatere
+EN: Second record I want to update
+NO: Andre rekord jeg ønsker å oppdatere
+
+will be recognized identically to example in Case 4, since when second "EN"
+directive occurs, extension already processed "EN" directive for first record.
