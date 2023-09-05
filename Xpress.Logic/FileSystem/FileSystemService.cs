@@ -14,10 +14,6 @@ namespace Xpress.Logic.FileSystem
 
         public IEnumerable<string> GetFileNames(string path, out IEnumerable<string> languages)
         {
-            if (!Directory.Exists(path))
-            {
-                path = Path.GetDirectoryName(path);
-            }
             var files = Directory.EnumerateFiles(path, $"*.resx", SearchOption.AllDirectories);
 
             var grouped = files.GroupBy(f => new { dir = Path.GetDirectoryName(f), name = GetSimpleFileName(f) });

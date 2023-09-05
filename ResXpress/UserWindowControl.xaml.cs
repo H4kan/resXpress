@@ -86,6 +86,10 @@ namespace ResXpress
             {
                 Window.GetWindow(this).Close();
             }
+            else
+            {
+                this.runBtn.IsEnabled = true;
+            }
             
         }
 
